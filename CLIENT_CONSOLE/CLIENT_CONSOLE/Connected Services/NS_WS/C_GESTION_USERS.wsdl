@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Ajoute_User">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_User" type="tns:C_USER" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="C_USER">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prenom" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Age" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Ajoute_UserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Ajoute_UserResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Donne_User">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="P_Cle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Donne_UserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Donne_UserResult" type="tns:C_USER" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Donne_Liste">
+        <s:complexType />
+      </s:element>
+      <s:element name="Donne_ListeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Donne_ListeResult" type="tns:ArrayOfC_USER" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfC_USER">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="C_USER" nillable="true" type="tns:C_USER" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Effacer_Liste">
+        <s:complexType />
+      </s:element>
+      <s:element name="Effacer_ListeResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Ajoute_UserSoapIn">
+    <wsdl:part name="parameters" element="tns:Ajoute_User" />
+  </wsdl:message>
+  <wsdl:message name="Ajoute_UserSoapOut">
+    <wsdl:part name="parameters" element="tns:Ajoute_UserResponse" />
+  </wsdl:message>
+  <wsdl:message name="Donne_UserSoapIn">
+    <wsdl:part name="parameters" element="tns:Donne_User" />
+  </wsdl:message>
+  <wsdl:message name="Donne_UserSoapOut">
+    <wsdl:part name="parameters" element="tns:Donne_UserResponse" />
+  </wsdl:message>
+  <wsdl:message name="Donne_ListeSoapIn">
+    <wsdl:part name="parameters" element="tns:Donne_Liste" />
+  </wsdl:message>
+  <wsdl:message name="Donne_ListeSoapOut">
+    <wsdl:part name="parameters" element="tns:Donne_ListeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Effacer_ListeSoapIn">
+    <wsdl:part name="parameters" element="tns:Effacer_Liste" />
+  </wsdl:message>
+  <wsdl:message name="Effacer_ListeSoapOut">
+    <wsdl:part name="parameters" element="tns:Effacer_ListeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="C_GESTION_USERSSoap">
+    <wsdl:operation name="Ajoute_User">
+      <wsdl:input message="tns:Ajoute_UserSoapIn" />
+      <wsdl:output message="tns:Ajoute_UserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Donne_User">
+      <wsdl:input message="tns:Donne_UserSoapIn" />
+      <wsdl:output message="tns:Donne_UserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Donne_Liste">
+      <wsdl:input message="tns:Donne_ListeSoapIn" />
+      <wsdl:output message="tns:Donne_ListeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Effacer_Liste">
+      <wsdl:input message="tns:Effacer_ListeSoapIn" />
+      <wsdl:output message="tns:Effacer_ListeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="C_GESTION_USERSSoap" type="tns:C_GESTION_USERSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ajoute_User">
+      <soap:operation soapAction="http://tempuri.org/Ajoute_User" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Donne_User">
+      <soap:operation soapAction="http://tempuri.org/Donne_User" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Donne_Liste">
+      <soap:operation soapAction="http://tempuri.org/Donne_Liste" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Effacer_Liste">
+      <soap:operation soapAction="http://tempuri.org/Effacer_Liste" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="C_GESTION_USERSSoap12" type="tns:C_GESTION_USERSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ajoute_User">
+      <soap12:operation soapAction="http://tempuri.org/Ajoute_User" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Donne_User">
+      <soap12:operation soapAction="http://tempuri.org/Donne_User" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Donne_Liste">
+      <soap12:operation soapAction="http://tempuri.org/Donne_Liste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Effacer_Liste">
+      <soap12:operation soapAction="http://tempuri.org/Effacer_Liste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="C_GESTION_USERS">
+    <wsdl:port name="C_GESTION_USERSSoap" binding="tns:C_GESTION_USERSSoap">
+      <soap:address location="http://localhost:49680/C_GESTION_USERS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="C_GESTION_USERSSoap12" binding="tns:C_GESTION_USERSSoap12">
+      <soap12:address location="http://localhost:49680/C_GESTION_USERS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
